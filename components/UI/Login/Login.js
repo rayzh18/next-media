@@ -20,6 +20,7 @@ const Login = () => {
   }, [])
   console.log('declared users', users)
   const selectUser = (id) => {
+    console.log(id)
     ls('activeUID', id)
     router.push('/')
   }
@@ -27,7 +28,7 @@ const Login = () => {
     if(!loadingUsers){
       return users.map((user) => {
         return(
-          <div onClick={selectUser} className="login-user__user-box" key={user.id}>
+          <div onClick={() => selectUser(user.id)} className="login-user__user-box" key={user.id}>
             <img className="login-user__user-img" src="https://uifaces.co/our-content/donated/vIqzOHXj.jpg" />
             <div className="login-user__user-name">{user.user}</div>
           </div>
