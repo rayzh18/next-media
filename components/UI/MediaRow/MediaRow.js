@@ -2,14 +2,12 @@ import axios from 'axios';
 import {useState, useEffect} from 'react';
 
 
-
-
 const MediaRow = (props) => {
   const [loadingData, setLoadingData] = useState(true)  
   const [movies, setMoviesData] = useState([])
   useEffect(() => {
     axios 
-      .get("https://api.themoviedb.org/3/discover/movie?with_genres=28&primary_release_year=2021&api_key=55235c76109068a112aaa3dcd3a08bda")
+      .get(`https://api.themoviedb.org/3/discover/movie?with_genres=28&primary_release_year=2021&api_key=${process.env.tmdbKey}`)
       .then(function (response) {
         setMoviesData(response.data.results)
         setLoadingData(false)
