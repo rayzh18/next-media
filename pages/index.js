@@ -17,7 +17,7 @@ export default function Home() {
   //AuthCheck (Higher Order Function: Authenticates components)
   return AuthCheck(
     <MainLayout>
-      <FeaturedMedia />
+      <FeaturedMedia videoUrl="https://www.youtube.com/embed/NYH2sLid0Zc?autoplay=1&loop=1&start=16" title="Mortal Kombat" location="In theaters and on HBO MAX. Streaming throughout May 23." mediaUrl="/movies/id"/>
       <LazyLoad offset={-400} placeholder={<Placeholders title="Movies" type="large-v" />}>
         <MediaRow title="Movies" type="large-v" endpoint="api/movies/234" />
       </LazyLoad>
