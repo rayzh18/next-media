@@ -17,7 +17,7 @@ const CastInfo = (props) => {
         console.log('Error Response')
         console.log(error)
       })
-  }, [])
+  }, [props.mediaID])
   
   const showCast = () => {
     //data will show once it is loaded
@@ -55,7 +55,7 @@ const CastInfo = (props) => {
         )
       })
     } else {
-      return(<div>Loading Cast</div>)
+      return(<div>Loading Crew</div>)
     }
   }
 

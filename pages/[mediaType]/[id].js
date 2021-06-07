@@ -13,7 +13,6 @@ import Placeholders from '../../components/UI/Placeholders/PlaceHolders'
 export default function SingleMediaPage(props) {
     const router = useRouter()
     // const [mediaData, setMediaData] = useState(false)
-    console.log(props)
     // const {id} = router.query
     // useEffect(() => {
     //     axios 
@@ -26,7 +25,7 @@ export default function SingleMediaPage(props) {
     //         console.log('Error Response')
     //       })
     //   }, [mediaData])
-    
+    console.log("[id]", props)
   return AuthCheck(
     <MainLayout>
       <FeaturedMedia title={props.query.mediaType === 'movie' ?  props.mediaData.title : props.mediaData.name} 
@@ -38,7 +37,7 @@ export default function SingleMediaPage(props) {
       <LazyLoad offset={-400} placeholder={<Placeholders title="Movies" type="large-v" />}>
         <MediaRow title="More Like This" type="small-v" mediaType={props.query.mediaType} endpoint={`${props.query.mediaType === 'movie' ? 'movie' : 'tv'}/${props.query.id}/similar?`} />
       </LazyLoad>      
-      <CastInfo mediaID={props.query.id} mediaType={props.mediaType}/>
+      <CastInfo mediaID={props.query.id} mediaType={props.query.mediaType}/>
     </MainLayout>
   )
 }
@@ -50,7 +49,6 @@ export async function getServerSideProps(context){
     } catch(error){
       console.log(error)
     }
-    console.log(mediaData)
     return {
         props: {mediaData: mediaData.data, query: context.query},
     }

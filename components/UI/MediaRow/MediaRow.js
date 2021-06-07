@@ -5,7 +5,9 @@ import Link from "next/link";
 const MediaRow = (props) => {
   const [loadingData, setLoadingData] = useState(true);
   const [movies, setMoviesData] = useState([]);
+  const [getType, setGetType] = useState(props.mediaType)
   useEffect(() => {
+    props.changeData === undefined ? setGetType(props.mediaType) : setGetType(props.changeData)
     axios
       .get(
         `https://api.themoviedb.org/3/${props.endpoint}&api_key=${process.env.tmdbKey}`
@@ -20,20 +22,21 @@ const MediaRow = (props) => {
         console.log("Error Response For " + props.title);
       });
   }, []);
-
+  console.log("mediarow", props)
   const loopComp = (comp, digit) => {
-    let thumbnails = [];
-    for (let index = 1; index <= digit; index++) {
-      thumbnails.push(comp);
-    }
+    let thumbnails = [<Skeleton key={'a'}/>, <Skeleton key={'b'}/>, <Skeleton key={'c'}/>, <Skeleton key={'d'}/>, <Skeleton key={'e'}/>, <Skeleton key={'f'}/>,<Skeleton key={'g'}/>, <Skeleton key={'h'}/>, <Skeleton key={'i'}/>];
+    // for (let index = 1; index <= digit; index++) {
+    //   thumbnails.push(comp);
+    // }
 
     return thumbnails;
   };
-  const showThumbnails = (type) => {
+  const showThumbnails = (type, changeData) => {
     return loadingData
       ? loopComp(<Skeleton />, 10)
       : movies.map((movie) => {
-          return <Thumbnail movieData={movie} type={type} mediaType={props.mediaType} />;
+          console.log('hi', changeData)
+          return <Thumbnail key={movie.id} movieData={movie} type={type} mediaType={changeData} />;
         });
   };
 
@@ -51,11 +54,13 @@ const MediaRow = (props) => {
   //     return 450;
   //   }
   // }
+ 
+  console.log(props)
   return (
     <div className={`media-row ${props.type}`}>
       <h3 className="media-row__title">{props.title}</h3>
       <div className="media-row__thumbnails">
-        {showThumbnails(props.type)}
+        {showThumbnails(props.type, getType)}
         {/* {loopComp((<Thumbnail />), 10)} */}
       </div>
     </div>
