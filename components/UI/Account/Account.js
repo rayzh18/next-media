@@ -1,15 +1,17 @@
 import { useStateContext } from "../../HBOProvider";
-
+import {useEffect} from 'react'
 const Account = (props) => {
   const globalState = useStateContext();
-  // const loopComp = (comp, digit) => {
-  //   let thumbnails = [];
-  //   for (let index = 1; index <= digit; index++) {
-  //     thumbnails.push(comp);
-  //   }
+ 
+  useEffect(() => {
+		if(globalState.accountModalOpen){
+			document.body.style.overflowY = 'hidden';
+		}else {
+			document.body.style.overflowY = 'auto'
+		}
+	}, [globalState.accountModalOpen])
+	
 
-  //   return thumbnails;
-  // };
   return (
     <div
       className={`account ${

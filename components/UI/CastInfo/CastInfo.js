@@ -17,7 +17,7 @@ const CastInfo = (props) => {
         console.log('Error Response')
         console.log(error)
       })
-  }, [props.mediaID])
+  }, [props.updateData])
   
   const showCast = () => {
     //data will show once it is loaded
