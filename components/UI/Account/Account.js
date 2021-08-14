@@ -45,7 +45,7 @@ const Account = (props) => {
 
   const signOut = () => {
     ls.remove('users')
-    router.push(`/`)
+    router.push(`/create`)
   }
 
   return (
@@ -72,9 +72,6 @@ const Account = (props) => {
         </ul>
         <div className="side-nav__divider" />
         <ul className="account__main">
-          <li onClick={signOut}>
-            <a>Account</a>
-          </li>
           <li onClick={signOut}>
             <a>Sign Out</a>
           </li>

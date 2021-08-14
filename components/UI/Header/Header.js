@@ -6,6 +6,7 @@ import Link from 'next/link'
 
 const Header = (props) => {
   const globalState = useStateContext()
+  console.log(globalState)
   return(<header className={`top-header ${globalState.accountModalOpen || globalState.sideNavOpen ? 'top-header--menu-open' : ''}`} >
     <div className="top-header__left-side">
       <div className="top-header__menu-btn" onClick={() => globalState.setSideNavOpenAction(true)}>
@@ -22,7 +23,7 @@ const Header = (props) => {
     </Link>
     <div className="top-header__account" onClick={() => globalState.setAccountModalOpenAction(!globalState.accountModalOpen)}>
       <img src="https://uifaces.co/our-content/donated/vIqzOHXj.jpg" className="top-header__user-img"/>
-      <div className="top-header__user-name">Bryant</div>
+      <div className="top-header__user-name">{globalState.user}</div>
     </div>
     <Account />
     <SearchModal />

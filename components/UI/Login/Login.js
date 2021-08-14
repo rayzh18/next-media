@@ -38,7 +38,7 @@ const Login = () => {
   }
 
   const createUser = () => {
-    router.push('/')
+    router.push('/create')
   }
   return (
       <div className="login-user">
